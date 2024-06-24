@@ -1,0 +1,39 @@
+// @import '../assets/styles/variables';
+@import 'variables';
+.about {
+    padding: 20px;
+    background-color: rgb(230, 234, 236);
+    border-radius: 12px;
+    h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    .description {
+        background-color: rgb(236, 240, 243);
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    }
+    .buttons {
+        display: flex;
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            &.cv {
+                background-color: goldenrod;
+                color: #ffffff;
+            }
+            &.hire {
+                background-color: #333333;
+                color: #ffffff;
+            }
+        }
+    }
+}

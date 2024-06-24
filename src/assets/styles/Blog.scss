@@ -1,0 +1,15 @@
+// @import '../assets/styles/variables';
+@import 'variables';
+.blog {
+    .blog-content {
+        text-align: center;
+        padding: 50px 20px;
+        h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+        }
+    }
+}

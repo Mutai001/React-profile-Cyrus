@@ -1,0 +1,17 @@
+@import 'variables';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: aliceblue;
+    color: $secondary-color;
+    font-family: $font-family;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+// ... (rest of your styles)

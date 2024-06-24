@@ -1,0 +1,33 @@
+// @import '../assets/styles/variables';
+@import 'variables';
+.services {
+    padding: 50px 20px;
+    text-align: center;
+    h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    .service-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        .service-item {
+            width: 45%;
+            margin-bottom: 20px;
+            h3 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            p,
+            ul {
+                font-size: 18px;
+            }
+            ul {
+                padding-left: 20px;
+                li {
+                    margin-bottom: 5px;
+                }
+            }
+        }
+    }
+}

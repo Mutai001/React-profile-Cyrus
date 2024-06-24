@@ -1,0 +1,12 @@
+// @import '../assets/styles/variables';
+@import 'variables';
+footer {
+    background-color: #333333;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    p {
+        margin: 0;
+        font-size: 14px;
+    }
+}

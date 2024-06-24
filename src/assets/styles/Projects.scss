@@ -1,0 +1,30 @@
+// @import '../assets/styles/variables';
+@import 'variables';
+.projects {
+    text-align: center;
+    padding: 50px 20px;
+    h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    .projects-items {
+        display: flex;
+        justify-content: space-around;
+        .projects-item {
+            width: 45%;
+            img {
+                width: 100%;
+                border-radius: 12px;
+                margin-bottom: 10px;
+            }
+            p {
+                font-size: 18px;
+                article {
+                    background-color: rgb(236, 240, 243);
+                    padding: 20px;
+                    border-radius: 12px;
+                }
+            }
+        }
+    }
+}
