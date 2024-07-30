@@ -1,12 +1,16 @@
-// @import '../assets/styles/variables';
-@import 'variables';
-footer {
-    background-color: #333333;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    p {
-        margin: 0;
-        font-size: 14px;
-    }
+.footer-link {
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: #333333;
+    text-decoration: underline;
+}
+
+.footer-icon {
+    transition: color 0.3s ease;
+}
+
+.footer-icon:hover {
+    color: #333333;
 }
