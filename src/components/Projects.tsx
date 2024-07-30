@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import '../assets/styles/Projects.scss';
 
 const Projects: React.FC = () => {
@@ -17,10 +17,12 @@ const Projects: React.FC = () => {
         </div>
         <div className="projects-item">
           <img src="./images/restaurant-management-system.png" alt="Project 2" />
-          <b>Restaurant management system</b>
-          <article>
-            <p>This project is a comprehensive restaurant management system designed to streamline operations and enhance the efficiency of restaurant management. The system includes features for menu management, order processing, table reservations, and staff management, all within a user-friendly interface.</p>
-          </article>
+          <p>
+            <b>Restaurant management system</b>
+            <article>
+              <p>This project is a comprehensive restaurant management system designed to streamline operations and enhance the efficiency of restaurant management. The system includes features for menu management, order processing, table reservations, and staff management, all within a user-friendly interface.</p>
+            </article>
+          </p>
         </div>
       </div>
     </section>

@@ -1,28 +1,87 @@
-// @import '../assets/styles/variables';
-@import 'variables';
+// // @import '../assets/styles/variables';
+// @import 'variables';
+// .projects {
+//     text-align: center;
+//     padding: 50px 20px;
+//     h2 {
+//         font-size: 36px;
+//         margin-bottom: 20px;
+//     }
+//     .projects-items {
+//         display: flex;
+//         justify-content: space-around;
+//         .projects-item {
+//             width: 45%;
+//             img {
+//                 width: 100%;
+//                 border-radius: 12px;
+//                 margin-bottom: 10px;
+//             }
+//             p {
+//                 font-size: 18px;
+//                 article {
+//                     background-color: rgb(236, 240, 243);
+//                     padding: 20px;
+//                     border-radius: 12px;
+//                 }
+//             }
+//         }
+//     }
+// }
 .projects {
-    text-align: center;
-    padding: 50px 20px;
+    background: linear-gradient(to right, #e0f7fa, #b2dfdb);
+    padding: 4rem 0;
+    min-height: 100vh;
     h2 {
-        font-size: 36px;
-        margin-bottom: 20px;
+        text-align: center;
+        color: #00796b;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 2rem;
     }
     .projects-items {
         display: flex;
-        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
         .projects-item {
-            width: 45%;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 800px;
+            text-align: center;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            &:hover {
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+                transform: translateY(-5px);
+            }
             img {
-                width: 100%;
                 border-radius: 12px;
-                margin-bottom: 10px;
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+                object-fit: cover;
             }
             p {
-                font-size: 18px;
-                article {
-                    background-color: rgb(236, 240, 243);
-                    padding: 20px;
-                    border-radius: 12px;
+                margin-top: 1rem;
+                color: #333333;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 1rem;
+                b {
+                    color: #00796b;
+                    font-size: 1.25rem;
+                    display: block;
+                    margin-bottom: 0.5rem;
+                }
+            }
+            article {
+                p {
+                    margin-top: 0.5rem;
+                    color: #555555;
+                    font-size: 0.9rem;
                 }
             }
         }
