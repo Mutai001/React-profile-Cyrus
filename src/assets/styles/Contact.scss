@@ -1,22 +1,37 @@
-// @import '../assets/styles/variables';
-@import 'variables';
 .contacts {
-    text-align: center;
-    padding: 50px 20px;
-    h2 {
-        font-size: 36px;
-        margin-bottom: 20px;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    .contact-container {
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-    .social-media {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        a {
-            font-size: 24px;
-            color: $primary-color;
-            &:hover {
-                color: darken($primary-color, 10%);
-            }
+    h2 {
+        color: #FF5722; // Vibrant orange color
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+    }
+    p {
+        color: #555555;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+    }
+    .social-icon {
+        font-size: 2rem;
+        color: #333333; // Darker shade for icons
+        transition: color 0.3s ease, transform 0.3s ease;
+        &:hover {
+            color: #FF5722; // Matching color on hover
+            transform: scale(1.1);
+        }
+        .MuiSvgIcon-root {
+            font-size: 2rem;
         }
     }
 }
