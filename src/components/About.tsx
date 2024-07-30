@@ -1,9 +1,10 @@
-// import React, { useEffect, useState } from 'react';
+// // About.tsx (or About.js)
+import React, { useEffect, useState } from 'react';
 import { Button, Typography, Box } from '@mui/material';
 import '../assets/styles/About.scss';
 import myPic from '../images/aside.png';
-import { useState, useEffect } from 'react';
-import MyCv from '../assets/CYRUS KIMUTAI SE CV.pdf'
+import MyCv from '../assets/CYRUS KIMUTAI SE CV.pdf';
+
 // Background images
 const backgroundImages = [
   'url("https://images.shiksha.com/mediadata/shikshaOnline/mailers/2021/naukri-learning/oct/27oct-v3/Hobbies-and-Passion.jpg")',
@@ -22,7 +23,7 @@ const SectionTitle: React.FC<any> = (props) => {
 
     let index = 0;
     const interval = setInterval(() => {
-      setDisplayText((prev: string) => prev + firstText[index]);
+      setDisplayText((prev) => prev + firstText[index]);
       index++;
       if (index >= firstText.length) {
         clearInterval(interval);
@@ -41,7 +42,7 @@ const SectionTitle: React.FC<any> = (props) => {
       const secondText = "I am a software engineer.";
       let index = 0;
       const interval = setInterval(() => {
-        setDisplayText((prev: string) => prev + secondText[index]);
+        setDisplayText((prev) => prev + secondText[index]);
         index++;
         if (index >= secondText.length) clearInterval(interval);
       }, 50);
@@ -64,6 +65,7 @@ const SectionTitle: React.FC<any> = (props) => {
         borderRight: '3px solid goldenrod',
         paddingRight: '10px',
         marginBottom: '1rem',
+        animation: 'fadeIn 2s ease-out',
         '&::after': {
           content: '""',
           position: 'absolute',
@@ -89,6 +91,7 @@ const SectionSubtitle: React.FC<any> = (props) => (
       color: '#333333',
       textAlign: 'center',
       marginBottom: '1rem',
+      animation: 'fadeIn 2s ease-out',
     }}
     {...props}
   />
@@ -102,6 +105,7 @@ const SectionText: React.FC<any> = (props) => (
       color: '#333333',
       textAlign: 'justify',
       marginBottom: '1rem',
+      animation: 'fadeIn 2s ease-out',
     }}
     {...props}
   />
@@ -118,6 +122,7 @@ const StyledButton: React.FC<any> = (props) => (
       '&:hover': {
         backgroundColor: '#f9a825',
       },
+      animation: 'fadeIn 2s ease-out',
     }}
     {...props}
   />
@@ -146,6 +151,7 @@ const About: React.FC = () => {
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           transition: 'background 1s ease-in-out',
+          
         }}
       >
         <Box
@@ -162,6 +168,7 @@ const About: React.FC = () => {
             color: '#fff',
             padding: '4rem',
             textAlign: 'center',
+            zIndex: 1, // Ensure content is above background
           }}
         >
           <SectionTitle />
@@ -178,19 +185,20 @@ const About: React.FC = () => {
               }}
             />
             <Box sx={{ maxWidth: '600px' }}>
-              <SectionSubtitle>I am a full stack software developer based in Nairobi Kenya.</SectionSubtitle>
+              <SectionSubtitle>
+                I am a full stack software developer based in Nairobi Kenya.
+              </SectionSubtitle>
               <SectionText>
-                My passion for innovation and dedication to self-driven learning have propelled me to continuously hone my skills in creating efficient and user-friendly digital solutions.
-                My expertise spans across both frontend and backend development, making me a versatile and valuable asset in the software development realm.
+                My passion for innovation and dedication to self-driven learning have propelled me to continuously hone my skills in creating efficient and user-friendly digital solutions. My expertise spans across both frontend and backend development, making me a versatile and valuable asset in the software development realm.
               </SectionText>
             </Box>
           </Box>
           <Box sx={{ marginTop: '2rem' }}>
-            <StyledButton
-              onClick={() => window.open(MyCv, '_blank')}
-            >
-              Download CV
-            </StyledButton>
+            <a href={MyCv} download="Cyrus_Kimutai_CV.pdf">
+              <StyledButton>
+                Download CV
+              </StyledButton>
+            </a>
             <StyledButton
               onClick={() => window.open('https://www.linkedin.com/in/cyrus-kimutai-974012313/', '_blank')}
             >
