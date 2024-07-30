@@ -1,5 +1,5 @@
 import { Box, Typography, Link, Grid, IconButton } from '@mui/material';
-import { Facebook, Twitter, Instagram, GitHub } from '@mui/icons-material';
+import { Facebook, Twitter, GitHub, LinkedIn } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 
 // Custom styled components
@@ -40,16 +40,16 @@ const Footer = () => {
         <Grid item xs={12} md={4}>
           <Typography variant="h6" align="center">Follow Us</Typography>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1rem' }}>
-            <a href="#" aria-label="Facebook">
+            <a href="https://www.facebook.com/profile.php?id=100089002852823" aria-label="Facebook">
               <FooterIcon><Facebook /></FooterIcon>
             </a>
-            <a href="#" aria-label="Twitter">
+            <a href="https://x.com/cyrus_Kim001" aria-label="Twitter">
               <FooterIcon><Twitter /></FooterIcon>
             </a>
-            <a href="#" aria-label="Instagram">
-              <FooterIcon><Instagram /></FooterIcon>
+            <a href="https://www.linkedin.com/in/cyrus-kimutai-974012313/" aria-label="Instagram">
+              <FooterIcon><LinkedIn/></FooterIcon>
             </a>
-            <a href="#" aria-label="GitHub">
+            <a href="https://github.com/Mutai001" aria-label="GitHub">
               <FooterIcon><GitHub /></FooterIcon>
             </a>
           </div>
