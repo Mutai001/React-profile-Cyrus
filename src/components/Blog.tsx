@@ -29,8 +29,8 @@ const Blog: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  useEffect(() => {
-    // Fetch blog posts from the Dev.to API
+  const fetchPosts = () => {
+    setLoading(true);
     fetch('https://dev.to/api/articles?tag=technology')
       .then(response => response.json())
       .then(data => {
@@ -45,6 +45,13 @@ const Blog: React.FC = () => {
         setLoading(false);
         console.error('Error fetching blog posts:', error);
       });
+  };
+
+  useEffect(() => {
+    fetchPosts();
+    const intervalId = setInterval(fetchPosts, 300000); // Fetch posts every 5 minutes
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
