@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import '../assets/styles/About.scss';
 import Mypic from '../images/aside.png';
+import { useState, useEffect } from 'react';
 
 // Background images
 const backgroundImages = [
@@ -198,7 +199,7 @@ const About: React.FC = () => {
             },
           }}>
             <img
-              src= {Mypic}
+              src={Mypic}
               alt="Cyrus Kimutai"
               style={{
                 borderRadius: '50%',

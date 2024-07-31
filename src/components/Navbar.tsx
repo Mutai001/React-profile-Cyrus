@@ -37,7 +37,7 @@ const NavBar: React.FC = () => {
   const handleMenuClose = () => setAnchorEl(null);
 
   const navLinks = [
-    { text: 'About', href: '/about' },
+    { text: 'About', href: '/' },
     { text: 'Services', href: '/services' },
     { text: 'Projects', href: '/projects' },
     { text: 'Blog', href: '/blog' },
