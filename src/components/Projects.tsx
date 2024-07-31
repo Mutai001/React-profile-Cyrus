@@ -12,7 +12,7 @@ const projects = [
   {
     title: 'E-commerce Web',
     image: Ecommercepic, // Replace with actual image URL
-    url: 'https://your-ecommerce-url.com',
+    url: 'https://mutai001.github.io/eccomerce-webpage/',
     description: 'This project is an e-commerce web application designed to provide a seamless online shopping experience for users. The application features a responsive design, ensuring it works flawlessly across various devices and screen sizes. Key functionalities include user authentication, product catalog browsing, shopping cart management, and a secure checkout process.',
   },
   {
