@@ -1,137 +1,151 @@
-// // src/components/NavBar.tsx
-
 import React, { useState } from 'react';
-import { AppBar, Toolbar, IconButton, List, ListItem, Drawer, Avatar, useTheme, useMediaQuery, Typography } from '@mui/material';
-import { Menu as MenuIcon } from '@mui/icons-material';
-import { styled, keyframes } from '@mui/material/styles';
+import { AppBar, Toolbar, IconButton, List, ListItem, Drawer, Avatar, Typography, Menu, MenuItem } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Link } from 'react-router-dom';
+import profileImage from '../images/aside.png';
 
-// Keyframe animation for avatar
-const pulse = keyframes`
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-  }
-  50% {
-    transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+// Define colors and fonts
+const primaryColor = 'goldenrod';
+const secondaryColor = '#333333';
+const fontFamily = `'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
+
+// Keyframe animations
+const pulseAnimation = `
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+    }
+    50% {
+      transform: scale(1.1);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
   }
 `;
 
-// Styled components
-const LogoContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(2),
-  [theme.breakpoints.down('sm')]: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-  },
-}));
-
-const CustomAvatar = styled(Avatar)(({ theme }) => ({
-  backgroundColor: 'linear-gradient(45deg, #ff6e40 30%, #ff8e53 90%)',
-  color: '#fff',
-  fontWeight: 'bold',
-  fontSize: '1.5rem',
-  animation: `${pulse} 2s infinite`,
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '1.2rem',
-  },
-}));
-
-const NavLinks = styled(List)(({ theme }) => ({
-  display: 'flex',
-  gap: '2rem',
-  listStyle: 'none',
-  margin: 0,
-  padding: 0,
-  flexGrow: 1,
-  justifyContent: 'center',
-  [theme.breakpoints.down('sm')]: {
-    display: 'none',
-  },
-}));
-
-const DrawerList = styled(List)({
-  width: 250,
-  backgroundColor: '#333',
-});
-
-const DrawerListItem = styled(ListItem)({
-  color: '#fff',
-  '&:hover': {
-    backgroundColor: '#555',
-  },
-  '& a': {
-    textDecoration: 'none',
-    color: 'inherit',
-    width: '100%',
-    display: 'block',
-    padding: '8px 16px',
-  },
-});
-
 const NavBar: React.FC = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleDrawerOpen = () => setDrawerOpen(true);
   const handleDrawerClose = () => setDrawerOpen(false);
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget);
+  const handleMenuClose = () => setAnchorEl(null);
 
   const navLinks = [
-    { text: 'Home', href: '#home' },
-    { text: 'About', href: '#about' },
-    { text: 'Service', href: '#services' },
-    { text: 'Projects', href: '#projects' },
-    { text: 'Blog', href: '#blog' },
-    { text: 'Contacts', href: '#contact' },
+    { text: 'About', href: '/about' },
+    { text: 'Services', href: '/services' },
+    { text: 'Projects', href: '/projects' },
+    { text: 'Blog', href: '/blog' },
+    { text: 'Contact', href: '/contact' },
   ];
 
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'goldenrod', padding: '0 2rem' }}>
-      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <LogoContainer>
-          <CustomAvatar>C</CustomAvatar>
-        </LogoContainer>
+    <>
+      <style>
+        {pulseAnimation}
+      </style>
+      <AppBar position="static" sx={{ backgroundColor: primaryColor, fontFamily: fontFamily }}>
+        <Toolbar>
+          <Typography variant="h6" sx={{ flexGrow: 1, color: 'white' }}>
+            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Cyrus</Link>
+          </Typography>
 
-        {isMobile ? (
-          <>
-            <IconButton
-              edge="end"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleDrawerOpen}
-              sx={{ marginLeft: 'auto' }}
-            >
-              <MenuIcon />
-            </IconButton>
-
-            <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerClose}>
-              <DrawerList>
-                {navLinks.map((link) => (
-                  <DrawerListItem key={link.text} onClick={handleDrawerClose}>
-                    <a href={link.href}>{link.text}</a>
-                  </DrawerListItem>
-                ))}
-              </DrawerList>
-            </Drawer>
-          </>
-        ) : (
-          <NavLinks>
+          <List sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1 }}>
             {navLinks.map((link) => (
-              <ListItem key={link.text} component="a" href={link.href} sx={{ color: '#fff', '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' } }}>
-                <Typography variant="body1">{link.text}</Typography>
+              <ListItem
+                key={link.text}
+                component={Link}
+                to={link.href}
+                sx={{
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: secondaryColor,
+                    transform: 'scale(1.05)',
+                    transition: 'all 0.3s ease',
+                  },
+                }}
+              >
+                {link.text}
               </ListItem>
             ))}
-          </NavLinks>
-        )}
-      </Toolbar>
-    </AppBar>
+          </List>
+
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="menu"
+            sx={{ display: { xs: 'block', sm: 'none' } }}
+            onClick={handleDrawerOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerClose}>
+            <List sx={{ width: 250 }}>
+              {navLinks.map((link) => (
+                <ListItem
+                  button
+                  key={link.text}
+                  component={Link}
+                  to={link.href}
+                  onClick={handleDrawerClose}
+                  sx={{
+                    color: primaryColor,
+                    '&:hover': {
+                      backgroundColor: secondaryColor,
+                      color: 'white',
+                    },
+                  }}
+                >
+                  {link.text}
+                </ListItem>
+              ))}
+            </List>
+          </Drawer>
+
+          <IconButton edge="end" color="inherit" onClick={handleMenuClick}>
+            <Avatar src={profileImage} sx={{ animation: `pulse 2s infinite` }} />
+          </IconButton>
+
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+            PaperProps={{
+              sx: {
+                width: '100%',
+                maxWidth: '300px',
+                padding: 1,
+                backgroundColor: primaryColor,
+                color: 'white',
+              },
+            }}
+          >
+            {navLinks.map((link) => (
+              <MenuItem
+                key={link.text}
+                onClick={handleMenuClose}
+                component={Link}
+                to={link.href}
+                sx={{
+                  color: 'white',
+                  '&:hover': {
+                    backgroundColor: secondaryColor,
+                  },
+                }}
+              >
+                {link.text}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Toolbar>
+      </AppBar>
+    </>
   );
 };
 

@@ -1,9 +1,7 @@
-// // About.tsx (or About.js)
 import React, { useEffect, useState } from 'react';
-import { Button, Typography, Box } from '@mui/material';
+import { Box, Typography, useTheme } from '@mui/material';
 import '../assets/styles/About.scss';
-import myPic from '../images/aside.png';
-import MyCv from '../assets/CYRUS KIMUTAI SE CV.pdf';
+import Mypic from '../images/aside.png';
 
 // Background images
 const backgroundImages = [
@@ -16,40 +14,27 @@ const backgroundImages = [
 
 const SectionTitle: React.FC<any> = (props) => {
   const [displayText, setDisplayText] = useState<string>('');
-  const [showSecondText, setShowSecondText] = useState<boolean>(false);
+  const [charIndex, setCharIndex] = useState<number>(0);
+
+  const text = "Hi, I'm Cyrus Kimutai a software engineer."; // Text to animate
 
   useEffect(() => {
-    const firstText = "Hi, I'm Cyrus Kimutai";
+    if (charIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText((prev) => prev + text[charIndex]);
+        setCharIndex((prev) => prev + 1);
+      }, 100);
 
-    let index = 0;
-    const interval = setInterval(() => {
-      setDisplayText((prev) => prev + firstText[index]);
-      index++;
-      if (index >= firstText.length) {
-        clearInterval(interval);
-        setTimeout(() => {
-          setDisplayText('');
-          setShowSecondText(true);
-        }, 1000); // Pause before showing the next text
-      }
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (showSecondText) {
-      const secondText = "I am a software engineer.";
-      let index = 0;
-      const interval = setInterval(() => {
-        setDisplayText((prev) => prev + secondText[index]);
-        index++;
-        if (index >= secondText.length) clearInterval(interval);
-      }, 50);
-
-      return () => clearInterval(interval);
+      return () => clearTimeout(timeout);
+    } else {
+      setTimeout(() => {
+        setDisplayText('');
+        setCharIndex(0);
+      }, 3000);
     }
-  }, [showSecondText]);
+  }, [charIndex, text]);
+
+  const theme = useTheme(); // Access the theme object
 
   return (
     <Typography
@@ -58,23 +43,38 @@ const SectionTitle: React.FC<any> = (props) => {
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         color: 'goldenrod',
         fontWeight: 'bold',
-        position: 'relative',
-        display: 'inline-block',
-        overflow: 'hidden',
+        position: 'absolute', // Position absolute to ensure it stays above content
+        top: '20px', // Space from the top
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 2, // Ensure it's above other content
         whiteSpace: 'nowrap',
-        borderRight: '3px solid goldenrod',
         paddingRight: '10px',
         marginBottom: '1rem',
         animation: 'fadeIn 2s ease-out',
+        textAlign: 'center',
+        overflow: 'hidden',
+        borderRight: '.15em solid orange',
+        [theme.breakpoints.down('md')]: {
+          fontSize: '2rem',
+          whiteSpace: 'normal',
+        },
+        [theme.breakpoints.down('sm')]: {
+          fontSize: '1.5rem',
+        },
         '&::after': {
           content: '""',
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: '2px',
-          height: '100%',
+          display: 'inline-block',
+          width: '1px',
+          height: '1.2em',
+          marginLeft: '.1em',
           backgroundColor: 'goldenrod',
+          animation: 'blink 1s step-end infinite'
         },
+        '@keyframes blink': {
+          from: { opacity: 1 },
+          to: { opacity: 0 },
+        }
       }}
       {...props}
     >
@@ -83,53 +83,57 @@ const SectionTitle: React.FC<any> = (props) => {
   );
 };
 
-const SectionSubtitle: React.FC<any> = (props) => (
-  <Typography
-    variant="h3"
-    sx={{
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-      color: '#333333',
-      textAlign: 'center',
-      marginBottom: '1rem',
-      animation: 'fadeIn 2s ease-out',
-    }}
-    {...props}
-  />
-);
+const SectionSubtitle: React.FC<any> = (props) => {
+  const theme = useTheme(); // Access the theme object
 
-const SectionText: React.FC<any> = (props) => (
-  <Typography
-    variant="body1"
-    sx={{
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-      color: '#333333',
-      textAlign: 'justify',
-      marginBottom: '1rem',
-      animation: 'fadeIn 2s ease-out',
-    }}
-    {...props}
-  />
-);
+  return (
+    <Typography
+      variant="h3"
+      sx={{
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        color: '#333333',
+        textAlign: 'center',
+        marginBottom: '1rem',
+        animation: 'fadeIn 2s ease-out',
+        [theme.breakpoints.down('md')]: {
+          fontSize: '1.5rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+          fontSize: '1.25rem',
+        },
+      }}
+      {...props}
+    />
+  );
+};
 
-const StyledButton: React.FC<any> = (props) => (
-  <Button
-    variant="contained"
-    sx={{
-      backgroundColor: 'goldenrod',
-      color: '#fff',
-      fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-      margin: '0 1rem',
-      '&:hover': {
-        backgroundColor: '#f9a825',
-      },
-      animation: 'fadeIn 2s ease-out',
-    }}
-    {...props}
-  />
-);
+const SectionText: React.FC<any> = (props) => {
+  const theme = useTheme(); // Access the theme object
+
+  return (
+    <Typography
+      variant="body1"
+      sx={{
+        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        color: '#333333',
+        textAlign: 'justify',
+        marginBottom: '1rem',
+        animation: 'fadeIn 2s ease-out',
+        [theme.breakpoints.down('md')]: {
+          fontSize: '1rem',
+        },
+        [theme.breakpoints.down('sm')]: {
+          fontSize: '0.875rem',
+        },
+      }}
+      {...props}
+    />
+  );
+};
 
 const About: React.FC = () => {
   const [backgroundIndex, setBackgroundIndex] = useState(0);
+  const theme = useTheme(); // Access the theme object
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -151,40 +155,60 @@ const About: React.FC = () => {
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           transition: 'background 1s ease-in-out',
-          
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '2rem',
+          [theme.breakpoints.down('md')]: {
+            height: 'auto',
+            padding: '1.5rem',
+          },
+          [theme.breakpoints.down('sm')]: {
+            padding: '1rem',
+          },
         }}
       >
         <Box
           sx={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
+            position: 'relative',
             width: '100%',
-            height: '100%',
+            height: 'auto',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             color: '#fff',
-            padding: '4rem',
-            textAlign: 'center',
             zIndex: 1, // Ensure content is above background
+            paddingTop: '80px', // Adjust space from the top to avoid overlap
+            [theme.breakpoints.up('md')]: {
+              width: '75%',
+            },
           }}
         >
           <SectionTitle />
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: '2rem', marginBottom: '2rem' }}>
+          <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: '1.5rem', 
+            marginBottom: '1.5rem',
+            flexDirection: 'column', 
+            [theme.breakpoints.up('md')]: { 
+              flexDirection: 'row' 
+            },
+          }}>
             <img
-              src={myPic}
+              src= {Mypic}
               alt="Cyrus Kimutai"
               style={{
                 borderRadius: '50%',
                 width: '200px',
-                height: '200px',
+                height: '300px',
                 border: '5px solid goldenrod',
                 objectFit: 'cover',
               }}
             />
-            <Box sx={{ maxWidth: '600px' }}>
+            <Box sx={{ maxWidth: '90%', textAlign: 'center' }}>
               <SectionSubtitle>
                 I am a full stack software developer based in Nairobi Kenya.
               </SectionSubtitle>
@@ -192,18 +216,6 @@ const About: React.FC = () => {
                 My passion for innovation and dedication to self-driven learning have propelled me to continuously hone my skills in creating efficient and user-friendly digital solutions. My expertise spans across both frontend and backend development, making me a versatile and valuable asset in the software development realm.
               </SectionText>
             </Box>
-          </Box>
-          <Box sx={{ marginTop: '2rem' }}>
-            <a href={MyCv} download="Cyrus_Kimutai_CV.pdf">
-              <StyledButton>
-                Download CV
-              </StyledButton>
-            </a>
-            <StyledButton
-              onClick={() => window.open('https://www.linkedin.com/in/cyrus-kimutai-974012313/', '_blank')}
-            >
-              Hire Me Now
-            </StyledButton>
           </Box>
         </Box>
       </Box>
