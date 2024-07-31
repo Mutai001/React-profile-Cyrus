@@ -1,10 +1,9 @@
-// import React, { useEffect, useState } from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Box, Typography, Button, useTheme } from '@mui/material';
 import '../assets/styles/About.scss';
 import Mypic from '../images/aside.png';
-import { useState, useEffect } from 'react';
+import CvFile from '../assets/CYRUS KIMUTAI SE CV.pdf'; // Replace with your CV file path
 
-// Background images
 const backgroundImages = [
   'url("https://images.shiksha.com/mediadata/shikshaOnline/mailers/2021/naukri-learning/oct/27oct-v3/Hobbies-and-Passion.jpg")',
   'url("https://png.pngtree.com/thumb_back/fh260/background/20220926/pngtree-download-wallpapers-red-abstract-background-lines-wallpaper-image_1465946.jpg")',
@@ -17,7 +16,7 @@ const SectionTitle: React.FC<any> = (props) => {
   const [displayText, setDisplayText] = useState<string>('');
   const [charIndex, setCharIndex] = useState<number>(0);
 
-  const text = "Hi, I'm Cyrus Kimutai a software engineer."; // Text to animate
+  const text = "Hi, I'm Cyrus Kimutai a software engineer."; 
 
   useEffect(() => {
     if (charIndex < text.length) {
@@ -35,7 +34,7 @@ const SectionTitle: React.FC<any> = (props) => {
     }
   }, [charIndex, text]);
 
-  const theme = useTheme(); // Access the theme object
+  const theme = useTheme(); 
 
   return (
     <Typography
@@ -44,11 +43,11 @@ const SectionTitle: React.FC<any> = (props) => {
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         color: 'goldenrod',
         fontWeight: 'bold',
-        position: 'absolute', // Position absolute to ensure it stays above content
-        top: '20px', // Space from the top
+        position: 'absolute',
+        top: '20px',
         left: '50%',
         transform: 'translateX(-50%)',
-        zIndex: 2, // Ensure it's above other content
+        zIndex: 2,
         whiteSpace: 'nowrap',
         paddingRight: '10px',
         marginBottom: '1rem',
@@ -85,7 +84,7 @@ const SectionTitle: React.FC<any> = (props) => {
 };
 
 const SectionSubtitle: React.FC<any> = (props) => {
-  const theme = useTheme(); // Access the theme object
+  const theme = useTheme(); 
 
   return (
     <Typography
@@ -108,38 +107,14 @@ const SectionSubtitle: React.FC<any> = (props) => {
   );
 };
 
-const SectionText: React.FC<any> = (props) => {
-  const theme = useTheme(); // Access the theme object
-
-  return (
-    <Typography
-      variant="body1"
-      sx={{
-        fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-        color: '#333333',
-        textAlign: 'justify',
-        marginBottom: '1rem',
-        animation: 'fadeIn 2s ease-out',
-        [theme.breakpoints.down('md')]: {
-          fontSize: '1rem',
-        },
-        [theme.breakpoints.down('sm')]: {
-          fontSize: '0.875rem',
-        },
-      }}
-      {...props}
-    />
-  );
-};
-
 const About: React.FC = () => {
   const [backgroundIndex, setBackgroundIndex] = useState(0);
-  const theme = useTheme(); // Access the theme object
+  const theme = useTheme(); 
 
   useEffect(() => {
     const interval = setInterval(() => {
       setBackgroundIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 5000); // Change image every 5 seconds
+    }, 5000); 
 
     return () => clearInterval(interval);
   }, []);
@@ -180,10 +155,10 @@ const About: React.FC = () => {
             alignItems: 'center',
             justifyContent: 'center',
             color: '#fff',
-            zIndex: 1, // Ensure content is above background
-            paddingTop: '80px', // Adjust space from the top to avoid overlap
+            zIndex: 1,
+            paddingTop: '80px',
             [theme.breakpoints.up('md')]: {
-              width: '75%',
+              width: '80%',
             },
           }}
         >
@@ -204,19 +179,35 @@ const About: React.FC = () => {
               style={{
                 borderRadius: '50%',
                 width: '200px',
-                height: '300px',
+                height: '200px',
                 border: '5px solid goldenrod',
                 objectFit: 'cover',
               }}
             />
             <Box sx={{ maxWidth: '90%', textAlign: 'center' }}>
               <SectionSubtitle>
-                I am a full stack software developer based in Nairobi Kenya.
+                With a passion for innovation and a commitment to continuous learning, I excel in creating efficient and user-friendly digital solutions. My expertise in both frontend and backend development makes me a versatile asset in the software development field.
               </SectionSubtitle>
-              <SectionText>
-                My passion for innovation and dedication to self-driven learning have propelled me to continuously hone my skills in creating efficient and user-friendly digital solutions. My expertise spans across both frontend and backend development, making me a versatile and valuable asset in the software development realm.
-              </SectionText>
             </Box>
+          </Box>
+          <Box sx={{ display: 'flex', gap: '1rem' }}>
+            <Button
+              variant="contained"
+              color="primary"
+              href={CvFile}
+              download
+              sx={{ textTransform: 'none' }}
+            >
+              Download CV
+            </Button>
+            <Button
+              variant="contained"
+              color="secondary"
+              href="mailto:cyruskimutai.it@gmail.com"
+              sx={{ textTransform: 'none' }}
+            >
+              Hire Me
+            </Button>
           </Box>
         </Box>
       </Box>
