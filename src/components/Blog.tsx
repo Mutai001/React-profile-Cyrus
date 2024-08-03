@@ -1,11 +1,9 @@
-// import React, { useEffect, useState } from 'react';
 import { Container, Typography, Card, CardContent, CardMedia, Button, Grid, Box, Pagination, TextField, CircularProgress, Alert } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from 'react-share';
 import '../assets/styles/Blog.scss';
 import { useState, useEffect } from 'react';
 
-// Styled Card component
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 345,
   margin: '1rem auto',
@@ -18,7 +16,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-// Constants for pagination
 const POSTS_PER_PAGE = 6;
 
 const Blog: React.FC = () => {
@@ -34,7 +31,6 @@ const Blog: React.FC = () => {
     fetch('https://dev.to/api/articles?tag=technology')
       .then(response => response.json())
       .then(data => {
-        // Sort posts by date in descending order
         const sortedPosts = data.sort((a: any, b: any) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
         setPosts(sortedPosts);
         setTotalPages(Math.ceil(sortedPosts.length / POSTS_PER_PAGE));
@@ -49,7 +45,7 @@ const Blog: React.FC = () => {
 
   useEffect(() => {
     fetchPosts();
-    const intervalId = setInterval(fetchPosts, 300000); // Fetch posts every 5 minutes
+    const intervalId = setInterval(fetchPosts, 300000); 
 
     return () => clearInterval(intervalId);
   }, []);
@@ -67,7 +63,6 @@ const Blog: React.FC = () => {
     post.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Get current posts based on pagination
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
   const currentPosts = filteredPosts.slice(startIndex, startIndex + POSTS_PER_PAGE);
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Typography, Button, useTheme } from '@mui/material';
 import '../assets/styles/About.scss';
 import Mypic from '../images/aside.png';
-import CvFile from '../assets/CYRUS KIMUTAI SE CV.pdf'; // Replace with your CV file path
+import CvFile from '../assets/CYRUS KIMUTAI SE CV.pdf'; 
 
 const backgroundImages = [
   'url("https://images.shiksha.com/mediadata/shikshaOnline/mailers/2021/naukri-learning/oct/27oct-v3/Hobbies-and-Passion.jpg")',

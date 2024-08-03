@@ -163,7 +163,6 @@ const Services: React.FC = () => {
                 secondaryTypographyProps={{ fontSize: '1rem' }}
               />
             </ListItem>
-            {/* Add more list items as needed */}
           </List>
         </StyledPaper>
       </Container>

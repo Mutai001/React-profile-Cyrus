@@ -27,17 +27,7 @@ const App: React.FC = () => {
         <Projects />
         <Blog />
         <Contact />      
-      {/* <Routes> */}
-
-      {/* <Route path="/" element={<About />} />
-      <Route path="/services" element={<Services />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/blog" element={<Blog />} />
-      <Route path="/contact" element={<Contact />} /> */}
-
-      {/* Add other routes here */}
-    {/* </Routes> */}
-    <Footer />
+          <Footer />
     </>
   );
 };

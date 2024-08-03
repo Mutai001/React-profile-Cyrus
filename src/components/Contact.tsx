@@ -1,4 +1,3 @@
-// import React, { useState } from 'react';
 import { Container, Typography, TextField, Button, Box, CircularProgress, Snackbar, IconButton } from '@mui/material';
 import { Close as CloseIcon } from '@mui/icons-material';
 import '../assets/styles/Contact.scss';
@@ -20,7 +19,7 @@ const Contact: React.FC = () => {
     setError(null);
 
     try {
-      const response = await fetch('https://formspree.io/f/xrbzqeng', { // Your Formspree endpoint
+      const response = await fetch('https://formspree.io/f/xrbzqeng', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -143,7 +142,7 @@ const Contact: React.FC = () => {
               <CloseIcon fontSize="small" />
             </IconButton>
           }
-          sx={{ backgroundColor: success ? '#4caf50' : '#f44336' }} // Green for success, red for error
+          sx={{ backgroundColor: success ? '#4caf50' : '#f44336' }} 
         />
       </Container>
     </section>
