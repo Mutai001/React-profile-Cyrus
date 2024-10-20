@@ -1,40 +1,11 @@
-import React, { useEffect, useState } from 'react';
+// import React from 'react';
 import { Box, Typography, Button, useTheme } from '@mui/material';
 import '../assets/styles/About.scss';
 import Mypic from '../images/aside.png';
 import CvFile from '../assets/CYRUS KIMUTAI SE CV.pdf'; 
 
-const backgroundImages = [
-  'url("https://images.shiksha.com/mediadata/shikshaOnline/mailers/2021/naukri-learning/oct/27oct-v3/Hobbies-and-Passion.jpg")',
-  'url("https://png.pngtree.com/thumb_back/fh260/background/20220926/pngtree-download-wallpapers-red-abstract-background-lines-wallpaper-image_1465946.jpg")',
-  'url("https://png.pngtree.com/background/20220817/original/pngtree-blue-background-and-wallpaper-abstract-picture-image_1915865.jpg")',
-  'url("https://i.pinimg.com/736x/e2/a6/03/e2a603e2e7213528bb731119be10555f.jpg")',
-  'url("https://static.vecteezy.com/system/resources/thumbnails/010/599/697/small_2x/abstract-smooth-curve-line-on-pink-gradient-lighting-color-background-vector.jpg")',
-];
-
-const SectionTitle: React.FC<any> = (props) => {
-  const [displayText, setDisplayText] = useState<string>('');
-  const [charIndex, setCharIndex] = useState<number>(0);
-
-  const text = "Hi, I'm Cyrus Kimutai a software engineer."; 
-
-  useEffect(() => {
-    if (charIndex < text.length) {
-      const timeout = setTimeout(() => {
-        setDisplayText((prev) => prev + text[charIndex]);
-        setCharIndex((prev) => prev + 1);
-      }, 100);
-
-      return () => clearTimeout(timeout);
-    } else {
-      setTimeout(() => {
-        setDisplayText('');
-        setCharIndex(0);
-      }, 3000);
-    }
-  }, [charIndex, text]);
-
-  const theme = useTheme(); 
+const SectionTitle: React.FC<React.PropsWithChildren<object>> = (props) => {
+  const theme = useTheme();
 
   return (
     <Typography
@@ -51,10 +22,8 @@ const SectionTitle: React.FC<any> = (props) => {
         whiteSpace: 'nowrap',
         paddingRight: '10px',
         marginBottom: '1rem',
-        animation: 'fadeIn 2s ease-out',
         textAlign: 'center',
         overflow: 'hidden',
-        borderRight: '.15em solid orange',
         [theme.breakpoints.down('md')]: {
           fontSize: '2rem',
           whiteSpace: 'normal',
@@ -62,28 +31,15 @@ const SectionTitle: React.FC<any> = (props) => {
         [theme.breakpoints.down('sm')]: {
           fontSize: '1.5rem',
         },
-        '&::after': {
-          content: '""',
-          display: 'inline-block',
-          width: '1px',
-          height: '1.2em',
-          marginLeft: '.1em',
-          backgroundColor: 'goldenrod',
-          animation: 'blink 1s step-end infinite'
-        },
-        '@keyframes blink': {
-          from: { opacity: 1 },
-          to: { opacity: 0 },
-        }
       }}
       {...props}
     >
-      {displayText}
+      Hi, I'm Cyrus Kimutai, a software engineer.
     </Typography>
   );
 };
 
-const SectionSubtitle: React.FC<any> = (props) => {
+const SectionSubtitle: React.FC<React.PropsWithChildren<object>> = (props) => {
   const theme = useTheme(); 
 
   return (
@@ -94,7 +50,6 @@ const SectionSubtitle: React.FC<any> = (props) => {
         color: '#333333',
         textAlign: 'center',
         marginBottom: '1rem',
-        animation: 'fadeIn 2s ease-out',
         [theme.breakpoints.down('md')]: {
           fontSize: '1.5rem',
         },
@@ -108,16 +63,7 @@ const SectionSubtitle: React.FC<any> = (props) => {
 };
 
 const About: React.FC = () => {
-  const [backgroundIndex, setBackgroundIndex] = useState(0);
   const theme = useTheme(); 
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBackgroundIndex((prevIndex) => (prevIndex + 1) % backgroundImages.length);
-    }, 5000); 
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <section className="about">
@@ -126,11 +72,7 @@ const About: React.FC = () => {
           position: 'relative',
           height: '100vh',
           overflow: 'hidden',
-          background: backgroundImages[backgroundIndex],
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center',
-          transition: 'background 1s ease-in-out',
+          background: 'linear-gradient(135deg, #f0f8ff, #add8e6)', // Lighter background color
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -154,7 +96,7 @@ const About: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#fff',
+            color: '#333333',
             zIndex: 1,
             paddingTop: '80px',
             [theme.breakpoints.up('md')]: {
