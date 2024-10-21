@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AppBar, Toolbar, IconButton, List, ListItem, Drawer, Avatar, Typography, Menu, MenuItem } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll'; // Import Link from react-scroll
 import profileImage from '../images/aside.png';
 
 // Define colors and fonts
@@ -37,11 +37,11 @@ const NavBar: React.FC = () => {
   const handleMenuClose = () => setAnchorEl(null);
 
   const navLinks = [
-    { text: 'About', href: '/' },
-    { text: 'Services', href: '/services' },
-    { text: 'Projects', href: '/projects' },
-    { text: 'Blog', href: '/blog' },
-    { text: 'Contact', href: '/contact' },
+    { text: 'About', to: 'about' }, // Adjusted to scroll to section ID
+    { text: 'Services', to: 'services' },
+    { text: 'Projects', to: 'projects' },
+    { text: 'Blog', to: 'blog' },
+    { text: 'Contact', to: 'contact' },
   ];
 
   return (
@@ -52,25 +52,39 @@ const NavBar: React.FC = () => {
       <AppBar position="static" sx={{ backgroundColor: primaryColor, fontFamily: fontFamily }}>
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1, color: 'white' }}>
-            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>Cyrus</Link>
+            <Link
+              to="about"
+              smooth={true}
+              duration={500}
+              style={{ textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+            >
+              Cyrus
+            </Link>
           </Typography>
 
           <List sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1 }}>
             {navLinks.map((link) => (
               <ListItem
                 key={link.text}
-                component={Link}
-                to={link.href}
                 sx={{
                   color: 'white',
                   '&:hover': {
                     backgroundColor: secondaryColor,
                     transform: 'scale(1.05)',
                     transition: 'all 0.3s ease',
+                    cursor: 'pointer',
                   },
                 }}
               >
-                {link.text}
+                <Link
+                  to={link.to}
+                  smooth={true}
+                  duration={500}
+                  offset={-70} // Offset for fixed navbar
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                >
+                  {link.text}
+                </Link>
               </ListItem>
             ))}
           </List>
@@ -91,8 +105,6 @@ const NavBar: React.FC = () => {
                 <ListItem
                   button
                   key={link.text}
-                  component={Link}
-                  to={link.href}
                   onClick={handleDrawerClose}
                   sx={{
                     color: primaryColor,
@@ -102,7 +114,16 @@ const NavBar: React.FC = () => {
                     },
                   }}
                 >
-                  {link.text}
+                  <Link
+                    to={link.to}
+                    smooth={true}
+                    duration={500}
+                    offset={-70}
+                    style={{ color: 'inherit', textDecoration: 'none', width: '100%' }}
+                    onClick={handleDrawerClose}
+                  >
+                    {link.text}
+                  </Link>
                 </ListItem>
               ))}
             </List>
@@ -130,8 +151,6 @@ const NavBar: React.FC = () => {
               <MenuItem
                 key={link.text}
                 onClick={handleMenuClose}
-                component={Link}
-                to={link.href}
                 sx={{
                   color: 'white',
                   '&:hover': {
@@ -139,7 +158,16 @@ const NavBar: React.FC = () => {
                   },
                 }}
               >
-                {link.text}
+                <Link
+                  to={link.to}
+                  smooth={true}
+                  duration={500}
+                  offset={-70}
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                  onClick={handleMenuClose}
+                >
+                  {link.text}
+                </Link>
               </MenuItem>
             ))}
           </Menu>

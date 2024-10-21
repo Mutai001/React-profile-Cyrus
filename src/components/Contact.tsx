@@ -1,5 +1,5 @@
 import { Container, Typography, TextField, Button, Box, CircularProgress, Snackbar, IconButton } from '@mui/material';
-import { Close as CloseIcon } from '@mui/icons-material';
+import { Close as CloseIcon, CheckCircle as CheckCircleIcon } from '@mui/icons-material';
 import '../assets/styles/Contact.scss';
 import { useState } from 'react';
 
@@ -37,8 +37,12 @@ const Contact: React.FC = () => {
       } else {
         throw new Error('Failed to send message');
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An error occurred');
+      }
       setSnackbarOpen(true);
     } finally {
       setLoading(false);
@@ -138,11 +142,21 @@ const Contact: React.FC = () => {
           onClose={handleCloseSnackbar}
           message={success ? "Message sent successfully!" : error}
           action={
-            <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseSnackbar}>
-              <CloseIcon fontSize="small" />
-            </IconButton>
+            <>
+              {success && <CheckCircleIcon sx={{ color: '#4caf50', marginRight: '8px' }} />}
+              <IconButton size="small" aria-label="close" color="inherit" onClick={handleCloseSnackbar}>
+                <CloseIcon fontSize="small" />
+              </IconButton>
+            </>
           }
-          sx={{ backgroundColor: success ? '#4caf50' : '#f44336' }} 
+          sx={{
+            backgroundColor: success ? '#4caf50' : '#f44336', // Green for success, Red for error
+            '& .MuiSnackbarContent-root': {
+              fontSize: '1.2rem',
+              fontWeight: 'bold',
+              color: 'white',
+            },
+          }}
         />
       </Container>
     </section>
