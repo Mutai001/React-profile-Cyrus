@@ -1,4 +1,17 @@
-import { Container, Typography, Card, CardContent, CardMedia, Button, Grid, Box, Pagination, TextField, CircularProgress, Alert } from '@mui/material';
+import {
+  Container,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+  Grid,
+  Box,
+  Pagination,
+  TextField,
+  CircularProgress,
+  Alert,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from 'react-share';
 import '../assets/styles/Blog.scss';
@@ -16,6 +29,30 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
+const StyledTextField = styled(TextField)(({ theme }) => ({
+  borderRadius: '12px',
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: theme.palette.primary.main,
+    },
+    '&:hover fieldset': {
+      borderColor: theme.palette.secondary.main,
+    },
+    '&.Mui-focused fieldset': {
+      borderColor: theme.palette.secondary.main,
+    },
+  },
+}));
+
+const StyledButton = styled(Button)(({ theme }) => ({
+  borderRadius: '12px',
+  marginLeft: '0.5rem',
+  backgroundColor: theme.palette.primary.main,
+  '&:hover': {
+    backgroundColor: theme.palette.secondary.main,
+  },
+}));
+
 const POSTS_PER_PAGE = 6;
 
 const Blog: React.FC = () => {
@@ -29,14 +66,16 @@ const Blog: React.FC = () => {
   const fetchPosts = () => {
     setLoading(true);
     fetch('https://dev.to/api/articles?tag=technology')
-      .then(response => response.json())
-      .then(data => {
-        const sortedPosts = data.sort((a: any, b: any) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+      .then((response) => response.json())
+      .then((data) => {
+        const sortedPosts = data.sort(
+          (a: any, b: any) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+        );
         setPosts(sortedPosts);
         setTotalPages(Math.ceil(sortedPosts.length / POSTS_PER_PAGE));
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         setError('Error fetching blog posts');
         setLoading(false);
         console.error('Error fetching blog posts:', error);
@@ -45,7 +84,7 @@ const Blog: React.FC = () => {
 
   useEffect(() => {
     fetchPosts();
-    const intervalId = setInterval(fetchPosts, 300000); 
+    const intervalId = setInterval(fetchPosts, 300000); // Fetch every 5 minutes
 
     return () => clearInterval(intervalId);
   }, []);
@@ -58,9 +97,14 @@ const Blog: React.FC = () => {
     setSearchQuery(event.target.value);
   };
 
-  const filteredPosts = posts.filter(post =>
-    post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    post.description.toLowerCase().includes(searchQuery.toLowerCase())
+  const handleSearchButtonClick = () => {
+    // This can be enhanced to do any specific search action, if needed
+  };
+
+  const filteredPosts = posts.filter(
+    (post) =>
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
@@ -97,7 +141,7 @@ const Blog: React.FC = () => {
             Stay tuned for my latest blog posts where I share insights, tutorials, and updates on the latest trends in full-stack development and software engineering.
           </Typography>
           <Box mb={4} display="flex" justifyContent="center">
-            <TextField
+            <StyledTextField
               label="Search Posts"
               variant="outlined"
               fullWidth
@@ -105,6 +149,9 @@ const Blog: React.FC = () => {
               value={searchQuery}
               sx={{ maxWidth: 600 }}
             />
+            <StyledButton variant="contained" onClick={handleSearchButtonClick}>
+              Search
+            </StyledButton>
           </Box>
 
           {loading && (
@@ -166,13 +213,19 @@ const Blog: React.FC = () => {
                           </Box>
                           <Box mt={2} display="flex" justifyContent="center" gap={1}>
                             <FacebookShareButton url={post.url}>
-                              <Button variant="outlined" color="primary">Facebook</Button>
+                              <Button variant="outlined" color="primary">
+                                Facebook
+                              </Button>
                             </FacebookShareButton>
                             <TwitterShareButton url={post.url} title={post.title}>
-                              <Button variant="outlined" color="primary">Twitter</Button>
+                              <Button variant="outlined" color="primary">
+                                Twitter
+                              </Button>
                             </TwitterShareButton>
                             <LinkedinShareButton url={post.url}>
-                              <Button variant="outlined" color="primary">LinkedIn</Button>
+                              <Button variant="outlined" color="primary">
+                                LinkedIn
+                              </Button>
                             </LinkedinShareButton>
                           </Box>
                         </CardContent>
