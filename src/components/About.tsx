@@ -2,7 +2,7 @@
 import { Box, Typography, Button, useTheme } from '@mui/material';
 import '../assets/styles/About.scss';
 import Mypic from '../images/MY BEST PROFILE.png';
-import CvFile from '../assets/CYRUS KIMUTAI SE CV.pdf';
+import CvFile from '../assets/Cyrus Kimutai-CV.pdf';
 
 const SectionTitle: React.FC<React.PropsWithChildren<object>> = (props) => {
   const theme = useTheme();
