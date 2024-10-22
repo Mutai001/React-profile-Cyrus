@@ -1,6 +1,6 @@
 import { Box, Typography, Button, useTheme } from '@mui/material';
 import '../assets/styles/About.scss';
-import Mypic from '../images/MY BEST PROFILE.png';
+import Mypic from '../images/53d9d6ef-ec5f-4dd6-bcaa-253dde2b1635-removebg-preview.png';
 import CvFile from '../assets/Cyrus Kimutai-CV.pdf';
 
 const SectionTitle: React.FC<React.PropsWithChildren<object>> = (props) => {
