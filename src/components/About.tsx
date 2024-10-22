@@ -1,4 +1,3 @@
-// import React from 'react';
 import { Box, Typography, Button, useTheme } from '@mui/material';
 import '../assets/styles/About.scss';
 import Mypic from '../images/MY BEST PROFILE.png';
@@ -36,7 +35,7 @@ const SectionSubtitle: React.FC<React.PropsWithChildren<object>> = (props) => {
       variant="h4"
       sx={{
         fontFamily: "'Poppins', sans-serif",
-        color: '#FFA500',  // Bright orange for emphasis
+        color: '#FFA500',
         fontWeight: '500',
         marginBottom: '1rem',
         fontSize: '2rem',
@@ -61,14 +60,14 @@ const About: React.FC = () => {
         sx={{
           position: 'relative',
           minHeight: '100vh',
-          background: 'linear-gradient(135deg, #fff7e6, #ffcc80)', // Light yellow background
+          background: 'linear-gradient(135deg, #fff7e6, #ffcc80)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '2rem 4rem',
-          flexDirection: 'row',
+          flexDirection: 'row-reverse', // This makes the image appear on the left
           [theme.breakpoints.down('md')]: {
-            flexDirection: 'column',
+            flexDirection: 'column-reverse', // Stacks image above text on small screens
             justifyContent: 'center',
             padding: '2rem',
           },
@@ -107,7 +106,7 @@ const About: React.FC = () => {
             <Button
               variant="contained"
               sx={{
-                backgroundColor: '#FFB74D',  // Orange/yellow button color
+                backgroundColor: '#FFB74D',
                 color: '#fff',
                 textTransform: 'none',
                 padding: '0.8rem 2rem',
